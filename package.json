@@ -1,0 +1,29 @@
+{
+  "name": "api_search",
+  "description": "",
+  "version": "0.0.1",
+  "main": "./api_search.js",
+  "author": {
+    "name": "Willem Goudsbloem",
+    "email": "willem.goudsbloem@gmail.com"
+  },
+  "keywords": [],
+  "licenses": {
+    "type": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/YOUR_LOGIN/api_search.git"
+  },
+  "bugs": {
+    "url": "http://github.com/YOUR_LOGIN/api_search/issues"
+  },
+  "dependencies": {
+    "q": "^1.0.1",
+    "http": "0.0.0",
+    "mongodb": "^1.4.0",
+    "url": "^0.7.9",
+    "express-cors": "0.0.3",
+    "express": "^3.5.1"
+  }
+}
