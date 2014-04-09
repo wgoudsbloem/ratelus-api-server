@@ -45,6 +45,20 @@ app.get("/api/search/organization/name", function(req, res) {
       });
 });
 
+app.get("/api/search/product/model", function(req, res) {
+  console.info("1");
+  require("./api/search/product/model")(url.parse(req.url, true).query.q)
+      .then(function(val){
+        return success(val, "product_model");
+  })
+      .then(function(val) {
+        res.writeHead(200, {
+          'Content-Type': 'application/json'
+        });
+        res.end(val);
+        return;
+      });
+});
 
 
 app.listen(HTTP_PORT);
