@@ -26,7 +26,6 @@ app.get("/api/search/organization/type", function(req, res) {
           'Content-Type': 'application/json'
         });
         res.end(val);
-        return;
       });
 });
 
@@ -40,7 +39,6 @@ app.get("/api/search/organization/name", function(req, res) {
           'Content-Type': 'application/json'
         });
         res.end(val);
-        return;
       });
 });
 
@@ -54,7 +52,6 @@ app.get("/api/search/product/model", function(req, res) {
           'Content-Type': 'application/json'
         });
         res.end(val);
-        return;
       });
 });
 
@@ -68,7 +65,19 @@ app.get("/api/search/product/brand", function(req, res) {
           'Content-Type': 'application/json'
         });
         res.end(val);
-        return;
+      });
+});
+
+app.get("/api/search/product", function(req, res) {
+  require("./api/search/product/product")(url.parse(req.url, true).query)
+      .then(function(val){
+        return success(val, "product");
+  })
+      .then(function(val) {
+        res.writeHead(200, {
+          'Content-Type': 'application/json'
+        });
+        res.end(val);
       });
 });
 
