@@ -81,6 +81,19 @@ app.get("/api/search/product", function(req, res) {
       });
 });
 
+app.get("/api/search/countries", function(req, res) {
+  require("./api/search/countries")(url.parse(req.url, true).query)
+      .then(function(val){
+        return success(val, "countries");
+  })
+      .then(function(val) {
+        res.writeHead(200, {
+          'Content-Type': 'application/json'
+        });
+        res.end(val);
+      });
+});
+
 app.listen(HTTP_PORT);
 
 app.on('error', function(e) {
