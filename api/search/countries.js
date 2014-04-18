@@ -13,7 +13,7 @@ module.exports = function(q) {
       }
       var result = collection.find({
         $or: [{
-            "name": new RegExp("^"+q, "i")
+            "name": new RegExp(q, "i")
           }]
       }, {_id: 0}).limit(10);
 

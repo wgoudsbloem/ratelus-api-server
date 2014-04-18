@@ -82,7 +82,7 @@ app.get("/api/search/product", function(req, res) {
 });
 
 app.get("/api/search/countries", function(req, res) {
-  require("./api/search/countries")(url.parse(req.url, true).query)
+  require("./api/search/countries")(url.parse(req.url, true).query.q)
       .then(function(val){
         return success(val, "countries");
   })
