@@ -45,7 +45,7 @@ app.get("/api/search/organization/name", function(req, res) {
 app.get("/api/search/product/model", function(req, res) {
   require("./api/search/product/model")(url.parse(req.url, true).query.q)
       .then(function(val){
-        return success(val, "product_model");
+        return success(val, "product");
   })
       .then(function(val) {
         res.writeHead(200, {
@@ -58,7 +58,7 @@ app.get("/api/search/product/model", function(req, res) {
 app.get("/api/search/product/brand", function(req, res) {
   require("./api/search/product/brand")(url.parse(req.url, true).query.q)
       .then(function(val){
-        return success(val, "product_brand");
+        return success(val, "product");
   })
       .then(function(val) {
         res.writeHead(200, {
