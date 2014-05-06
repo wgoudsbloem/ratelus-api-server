@@ -1,7 +1,7 @@
 var mongodb = require("mongodb");
 var Q = require("q");
 
-var searchType = function(q) {
+module.exports = function(q) {
 	var deferred = Q.defer();
 	mongodb.MongoClient.connect("mongodb://test:test123@troup.mongohq.com:10049/ratelus", function(err, db) {
 		if (err !== null) {
@@ -14,7 +14,7 @@ var searchType = function(q) {
 			var result = collection.find({
 				$or : [ {
 					"type" : new RegExp("^" + q, "i")
-				}]
+				} ]
 			}, { _id: 0 });
 
 			result.toArray(function(err, items) {
@@ -27,5 +27,3 @@ var searchType = function(q) {
 	});
 	return deferred.promise;
 };
-
-module.exports = searchType;
