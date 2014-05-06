@@ -68,6 +68,19 @@ app.get("/api/search/product/brand", function(req, res) {
       });
 });
 
+app.get("/api/search/product/type", function(req, res) {
+  require("./api/search/product/type")(url.parse(req.url, true).query.q)
+      .then(function(val){
+        return success(val, "product");
+  })
+      .then(function(val) {
+        res.writeHead(200, {
+          'Content-Type': 'application/json'
+        });
+        res.end(val);
+      });
+});
+
 app.get("/api/search/product", function(req, res) {
   require("./api/search/product/product")(url.parse(req.url, true).query)
       .then(function(val){
