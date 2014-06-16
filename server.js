@@ -18,9 +18,9 @@ app.use(express.json());
 
 app.get("/api/search/organization/type", function(req, res) {
   require("./api/search/organization/type")(url.parse(req.url, true).query.q)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "organization_type");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
@@ -31,9 +31,9 @@ app.get("/api/search/organization/type", function(req, res) {
 
 app.get("/api/search/organization/name", function(req, res) {
   require("./api/search/organization/name")(url.parse(req.url, true).query.q)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "organization_name");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
@@ -44,9 +44,9 @@ app.get("/api/search/organization/name", function(req, res) {
 
 app.get("/api/search/product/model", function(req, res) {
   require("./api/search/product/model")(url.parse(req.url, true).query.q)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "product");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
@@ -57,9 +57,9 @@ app.get("/api/search/product/model", function(req, res) {
 
 app.get("/api/search/product/brand", function(req, res) {
   require("./api/search/product/brand")(url.parse(req.url, true).query.q)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "product");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
@@ -70,9 +70,9 @@ app.get("/api/search/product/brand", function(req, res) {
 
 app.get("/api/search/product/type", function(req, res) {
   require("./api/search/product/type")(url.parse(req.url, true).query.q)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "product");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
@@ -83,9 +83,9 @@ app.get("/api/search/product/type", function(req, res) {
 
 app.get("/api/search/product", function(req, res) {
   require("./api/search/product/product")(url.parse(req.url, true).query)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "product");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
@@ -96,15 +96,24 @@ app.get("/api/search/product", function(req, res) {
 
 app.get("/api/search/countries", function(req, res) {
   require("./api/search/countries")(url.parse(req.url, true).query.q)
-      .then(function(val){
+      .then(function(val) {
         return success(val, "countries");
-  })
+      })
       .then(function(val) {
         res.writeHead(200, {
           'Content-Type': 'application/json'
         });
         res.end(val);
       });
+});
+
+app.put("/api/product/:brand/:model", function(req, res) {
+  console.info(req.params.brand);
+  require("./api/product/save")(req.params.brand, req.params.model, req.body.product);
+  res.writeHead(200, {
+    'Content-Type': 'application/json'
+  });
+  res.end();
 });
 
 app.listen(HTTP_PORT);
