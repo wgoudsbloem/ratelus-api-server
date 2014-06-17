@@ -43,7 +43,7 @@ app.get("/api/search/organization/name", function(req, res) {
 });
 
 app.get("/api/search/product/model", function(req, res) {
-  require("./api/search/product/model")(url.parse(req.url, true).query.q)
+  require("./api/search/product/model")(url.parse(req.url, true).query)
       .then(function(val) {
         return success(val, "product");
       })
