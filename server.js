@@ -116,6 +116,15 @@ app.put("/api/product/:brand/:model", function(req, res) {
   res.end();
 });
 
+app.put("/api/place", function(req, res) {
+  console.info(req.params.brand);
+  require("./api/place/save")(req.body.place);
+  res.writeHead(200, {
+    'Content-Type': 'application/json'
+  });
+  res.end();
+});
+
 app.listen(HTTP_PORT);
 
 app.on('error', function(e) {
